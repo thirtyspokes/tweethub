@@ -4,17 +4,13 @@
             [taoensso.timbre :as timbre :refer [info]]
             [clojure.core.async :refer [go-loop]]))
 
-(defn run
-  [state config]
-  (Thread/sleep 10000)
-  (info "Polling for pull requests...")
-  (github/process-pull-requests state config))
-
 (defn -main
   [& args]
   (let [config (read-string (slurp "config.edn"))
         app-state (storage/start-application-state (:app-state-filename config))]
     (go-loop []
-      (run app-state config)
+      (info "Polling for pull requests...")
+      (github/process-pull-requests app-state config)
+      (Thread/sleep 10000)
       (recur)))
   (while true))
