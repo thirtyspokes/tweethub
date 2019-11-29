@@ -38,4 +38,4 @@
    exist in the application state, posts it to Twitter."
   [app-state {:keys [github-user github-repo] :as config}]
   (let [parsed-prs (parse-pull-requests (get-pull-requests github-user github-repo))]
-    (doall (map #(process-new-pull-request app-state config %) parsed-prs))))
+    (doall (pmap #(process-new-pull-request app-state config %) parsed-prs))))
