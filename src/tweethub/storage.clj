@@ -1,6 +1,5 @@
 (ns tweethub.storage
-  (:require [clojure.edn :as edn]
-            [clojure.java.io :as io]))
+  (:require [clojure.java.io :as io]))
 
 (def app-state (atom {}))
 
@@ -17,6 +16,17 @@
   (if (file-exists? filename)
     (read-string (slurp filename))
     {}))
+
+(defn new-pull-request?
+  "Does the PR exist in the application's state - i.e.,
+   has it been posted already?"
+  [app-state pull-request]
+  (nil? (get @app-state (:id pull-request))))
+
+(defn save-pull-request
+  "Adds a new pull request to the application's state."
+  [app-state pull-request]
+  (swap! app-state assoc (:id pull-request) pull-request))
 
 (defn start-application-state
   "When called, loads the map contained in `filename` (or initializes an empty map)

@@ -7,8 +7,8 @@
 (defn run
   [state config]
   (Thread/sleep 10000)
-  (info "Polling for issues...")
-  (github/process-issues state config))
+  (info "Polling for pull requests...")
+  (github/process-pull-requests state config))
 
 (defn -main
   [& args]
