@@ -1,22 +1,50 @@
 # tweethub
 
-A Clojure library designed to ... well, that part is up to you.
+Posts summaries of new pull requests to a particular repository to Twitter.
 
 ## Usage
 
-FIXME
+After cloning the repository, ensure that the provided `config.edn` is in the root of the project directory:
 
-## License
+```
+$ ls
+README.md
+config.edn <---
+project.clj
+resources/
+src/
+target/
+test/
+```
 
-Copyright © 2019 FIXME
+It should look like so:
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+```
+$ cat config.edn
+{
+ :app-state-filename "issues.edn"
+ :github-user "thirtyspokes"
+ :github-repo "pr-tracking"
+ :twitter-oauth-key "OUATH_KEY"
+ :twitter-oauth-secret "OAUTH_SECRET"
+ :twitter-access-token "ACCESS_TOKEN"
+ :twitter-access-secret "ACCESS_SECRET"
+}
+```
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+Once you have the config file present, you can run the app via `lein run`.
+
+```
+$ lein run
+19-11-29 14:55:01 diana.local INFO [tweethub.core:12] - Polling for pull requests...
+19-11-29 14:55:02 diana.local INFO [tweethub.github:32] - PR #3 is new! Posting to Twitter.
+19-11-29 14:55:03 diana.local INFO [tweethub.twitter:48] - Successfully posted PR #3 to Twitter.
+...
+```
+
+Run the tests via `lein test`.
+
+Implementation Notes
+====================
+
+See [NOTES.md](NOTES.md) for my notes on implementation.
