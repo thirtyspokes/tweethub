@@ -2,7 +2,7 @@
 
 Posts summaries of new pull requests to a particular repository to Twitter.
 
-With the provided configuration, the app will be polling for new pull requests to [thirtyspokes/pr-tracking](https://github.com/thirtyspokes/pr-tracking) and will additionally backfill the current set of open requests.
+With the provided configuration, the app will be polling for new pull requests to [thirtyspokes/pr-tracking](https://github.com/thirtyspokes/pr-tracking) and will additionally backfill the current set of open requests.  A polling loop will run every 10 seconds and check for any new PRs, and each new PR will be posted to the configured Twitter account.
 
 The PRs will be posted to the [@tweethubt](https://twitter.com/tweethubt) Twitter account.
 
