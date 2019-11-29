@@ -42,7 +42,7 @@
   (let [tweet-text (build-tweet-text pull-request)
         tweet-body {:status tweet-text}]
     (try
-      (client/post "https://api.twitter.com/1.1/statuses/update.json" 
+      (client/post "https://api.twitter.com/1.1/statuses/update.json"
                    {:query-params (merge (fetch-credentials config tweet-body) tweet-body)
                     :cookie-policy :standard})
       (info (format "Successfully posted PR #%s to Twitter." (:number pull-request)))

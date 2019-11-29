@@ -2,6 +2,10 @@
 
 Posts summaries of new pull requests to a particular repository to Twitter.
 
+With the provided configuration, the app will be polling for new pull requests to [thirtyspokes/pr-tracking](https://github.com/thirtyspokes/pr-tracking) and will additionally backfill the current set of open requests.
+
+The PRs will be posted to the [@tweethubt](https://twitter.com/tweethubt) Twitter account.
+
 ## Usage
 
 After cloning the repository, ensure that the provided `config.edn` is in the root of the project directory:

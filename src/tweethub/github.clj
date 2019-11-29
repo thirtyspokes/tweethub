@@ -3,7 +3,8 @@
             [tweethub.storage :refer [new-pull-request?]]
             [cheshire.core :refer :all]
             [clj-http.client :as client]
-            [taoensso.timbre :as timbre :refer [info]]))
+            [taoensso.timbre :as timbre :refer [info]]
+            [clojure.core.reducers :as r]))
 
 (defn get-pull-requests
   "Fetches the latest PRs for the `username`'s `repo` repository, and returns
@@ -16,10 +17,10 @@
   "Transforms the JSON structures from the github API to maps."
   [pull-requests]
   (map (fn [pr] {:id (:id pr)
-                    :user (get-in pr [:user :login])
-                    :title (:title pr)
-                    :number (:number pr)
-                    :url (:html_url pr)})
+                 :user (get-in pr [:user :login])
+                 :title (:title pr)
+                 :number (:number pr)
+                 :url (:html_url pr)})
        pull-requests))
 
 (defn process-new-pull-request

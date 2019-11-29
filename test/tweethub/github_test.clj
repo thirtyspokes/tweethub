@@ -11,7 +11,7 @@
      :user {:node_id "MDQ6VXNlcjk1NDMwODk=",
             :type "User",
             :login "username",
-            :id 9543089 }},
+            :id 9543089}},
     {:html_url "github.com/2",
      :number 2,
      :state "open",
@@ -20,7 +20,7 @@
      :user {:node_id "MDQ6VXNlcjk1NDMwODk=",
             :type "User",
             :login "username2",
-            :id 9543089 }}))
+            :id 9543089}}))
 
 (deftest parse-pull-requests-test
   (testing "transforms github API JSON into the desired format"
