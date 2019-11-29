@@ -3,15 +3,20 @@
             [tweethub.storage :refer [new-pull-request?]]
             [cheshire.core :refer :all]
             [clj-http.client :as client]
-            [taoensso.timbre :as timbre :refer [info]]
+            [taoensso.timbre :as timbre :refer [info error]]
             [clojure.core.reducers :as r]))
 
 (defn get-pull-requests
   "Fetches the latest PRs for the `username`'s `repo` repository, and returns
-   the JSON as a seq of maps."
+   the JSON as a seq of maps.  In the event of an exception from the github API,
+   returns an empty collection allowing for a retry on the next poll."
   [username repo]
   (let [url (format "https://api.github.com/repos/%s/%s/pulls" username repo)]
-    (parse-string (:body (client/get url)) true)))
+    (try
+      (parse-string (:body (client/get url)) true)
+      (catch Exception e
+        (error (format "Request to Github API failed: %s" (.getMessage e)))
+        '()))))
 
 (defn parse-pull-requests
   "Transforms the JSON structures from the github API to maps."

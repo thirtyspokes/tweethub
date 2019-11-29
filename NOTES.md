@@ -9,7 +9,7 @@ I opted to provide secrets and other configuration via reading a file so as not 
 I grabbed a few dependencies that I use in almost all of my projects:
 
 * Cheshire, for a nice and simple JSON parsing solution (for working with the Github API).
-* clj-http, which is my preferred HTTP client library for working in Clojure.  It's reasonably performant and adheres strictly to the Ring spec, so I like how consistent it feels with the rest of the Clojure HTTP ecosystem.
+* clj-http, which is my preferred HTTP client library for working in Clojure.  It's reasonably performant and adheres strictly to the Ring spec, so I like how consistent it feels with the rest of the Clojure HTTP ecosystem.  It also has a nice integration with Slingson (which I didn't use this time, since this app doesn't need to distinguish 4xx from 5xx errors) which allows us to handle different types of HTTP errors in the correct ways (perhaps retrying 500s and not retrying 400s).
 * timbre for logging - I mainly use this one as it absolves me from having to muck around with any log4j properties configuration or anything like that.
 * core.async is probably not required at all, I mainly pull it in for `go-loop` for the application's main thread.
 * Finally, I use `clj-oauth` for authenticating to the Twitter API.  Because we're authenticating in an app access token context (i.e., we don't have to request an OAuth token and then exchange it for an access token because we are alrady in an authenticated user's context) this library is basically just used for generating the HMAC-SHA1 signature that needs to be supplied so hopefully it doesn't fall too far within "using an SDK."
