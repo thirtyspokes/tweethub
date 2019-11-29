@@ -31,5 +31,4 @@
   (let [user-params {:status status}]
     (println config)
     (client/post "https://api.twitter.com/1.1/statuses/update.json" 
-                 {:query-params (merge (fetch-credentials config user-params) user-params)
-                  :debug true})))
+                 {:query-params (merge (fetch-credentials config user-params) user-params)})))

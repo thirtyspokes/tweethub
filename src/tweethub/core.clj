@@ -14,7 +14,6 @@
   [& args]
   (let [config (read-string (slurp "config.edn"))
         app-state (storage/start-application-state (:app-state-filename config))]
-    (println config)
     (go-loop []
       (run app-state config)
       (recur)))

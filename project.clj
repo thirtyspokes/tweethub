@@ -9,6 +9,5 @@
                  [com.taoensso/timbre "4.10.0"]
                  [org.clojure/core.async "0.5.527"]
                  [clj-oauth "1.5.5"]]
-  :plugins [[lein-environ "1.1.0"]]
   :main tweethub.core
   :repl-options {:init-ns tweethub.core})
